@@ -5,304 +5,241 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spectrum Racing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/src/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/saved-by-zero" rel="stylesheet">
+
     <style>
+        html,
         body {
-            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* Clase reutilizable para el contenido con márgenes */
-        .section-container {
-            width: 100%;
-            padding: 0 1rem;
-            box-sizing: border-box;
+        .tab-content {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            transform: translateX(100%);
+            /* por defecto, fuera de vista a la derecha */
+            z-index: 0;
         }
 
-        @media screen and (min-width: 768px) {
-            .section-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 4srem;
-            }
+        .tab-active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+            z-index: 10;
+        }
+
+        .tab-left {
+            transform: translateX(-100%);
+            z-index: 5;
+        }
+
+        .tab-right {
+            transform: translateX(100%);
+            z-index: 5;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50vw;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 9999px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 0.75rem 0;
+            color: #eee;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-tab:hover,
+        .nav-tab:focus {
+            background-color: rgba(220, 38, 38, 0.8);
+            color: white;
+            transform: scale(1.1);
+            outline: none;
+        }
+
+        .nav-tab:active {
+            transform: scale(0.95);
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // Mostrar/ocultar menú
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Cerrar menú al hacer clic en un enlace
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        });
-    </script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
-    <!-- Header -->
-    <header class="bg-black text-white py-1 px-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
-        <div class="flex items-center space-x-2">
-            <img src="/src/logopng.png" alt="Logo" class="h-14" />
-            <span class="font-bold text-sm">Spectrum Racing</span>
-        </div>
+<body class="text-white">
 
-        <!-- Botón hamburguesa para móviles -->
-        <button id="menu-btn" aria-label="Abrir menú" class="md:hidden text-white text-xl">
-            <i class="fas fa-bars"></i>
-        </button>
+    <!-- Contenedor horizontal de secciones -->
+    <main id="tabs" class="relative w-screen h-screen overflow-hidden">
 
-        <!-- Menú de navegación -->
-        <nav id="menu" class="hidden md:flex space-x-6 text-sm">
-            <a href="#inicio" class="hover:text-red-500">Inicio</a>
-            <a href="#equipo" class="hover:text-red-500">Equipo</a>
-            <a href="#proyecto" class="hover:text-red-500">Proyecto</a>
-            <a href="#galeria" class="hover:text-red-500">Galería</a>
-        </nav>
+        <!-- Hero / Inicio -->
+        <section id="inicio"
+            class="tab-content tab-active flex items-center justify-center text-center px-6 bg-cover bg-center"
+            style="background-image: url('src/specFrontView.png'); font-family: 'Saved By Zero', sans-serif;">
+            <div class="bg-black bg-opacity-60 w-full h-full absolute top-0 left-0 z-0"></div>
+            <div class="z-10">
+                <h1 class="text-6xl md:text-8xl font-extrabold uppercase">Spectrum Racing</h1>
+                <p class="mt-4 text-2xl text-gray-300 max-w-2xl mx-auto font-bold"
+                    style="font-family: 'Oswald', sans-serif;">Equipo de F1 in Schools | Colegio San
+                    Ángel de
+                    Coatzacoalcos.</p>
+                <button onclick="showTab('equipo')"
+                    style="font-family: 'Oswald', sans-serif;" class="mt-6 inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-all">Explorar</button>
+            </div>
+        </section>
 
-        <!-- Menú móvil desplegable -->
-        <div id="mobile-menu" class="md:hidden hidden bg-black text-white px-5 py-4 space-y-2 text-sm">
-            <a href="#inicio" class="block hover:text-red-500">Inicio</a>
-            <a href="#equipo" class="block hover:text-red-500">Equipo</a>
-            <a href="#proyecto" class="block hover:text-red-500">Proyecto</a>
-            <a href="#galeria" class="block hover:text-red-500">Galería</a>
-        </div>
-    </header>
+        <!-- Nosotros -->
+        <section id="nosotros"
+            class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
+            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position:center; background-size: 500px; font-family: 'Saved By Zero', sans-serif;">
 
+            <!-- Overlay oscuro para mejorar contraste -->
+            <div class="absolute inset-0 bg-black bg-opacity-80 pointer-events-none"></div>
 
-    <!-- Hero -->
-    <section id="inicio"
-        class="h-[65vh] bg-gradient-to-r from-gray-600 to-gray-800 flex flex-col justify-center items-center text-center text-white">
-        <h1 class="text-8xl font-extrabold mb-2">SPECTRUM RACING</h1>
-        <p class="mb-8">Equipo de F1 in Schools | Colegio San Ángel de Coatzacoalcos</p>
-        <!-- <div class="space-x-4">
-            <button class="bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm">Nuestro Proyecto</button>
-            <button href="#equipo" class="bg-white text-red-700 font-bold py-2 px-4 rounded-full text-sm">Conoce al Equipo</button>
-        </div> -->
-    </section>
+            <!-- Contenedor con efecto de vidrio -->
+            <div
+                class="relative z-10 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 max-w-4xl mx-auto p-8 md:p-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg ring-1 ring-white/30 ring-offset-2 ring-offset-red-500/20">
 
-    <!-- ¿Quiénes Somos? -->
-    <section class="section-container bg-white py-16 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
-        <img src="/src/logo.jpg" alt="F1 Logo" class="w-full md:w-1/2 rounded-xl shadow-md" />
-        <div class="md:w-1/2">
-            <h2 class="text-2xl font-extrabold mb-2">¿Quiénes Somos?</h2>
-            <div class="w-20 h-1 bg-red-600 mb-4"></div>
-            <p class="mb-4 text-sm">
-                Spectrum Racing es un equipo de estudiantes apasionados del Colegio San Ángel de Coatzacoalcos que
-                participa en la competencia internacional F1 in Schools.
-            </p>
-            <p class="mb-6 text-sm">
-                Nuestro objetivo es diseñar, fabricar y competir con un auto en miniatura propulsado por CO₂, aplicando
-                principios de ingeniería, aerodinámica y gestión de proyectos.
-            </p>
-            <!-- <div class="flex flex-wrap gap-3 text-sm">
-                <span class="bg-red-100 text-red-700 px-4 py-1 rounded-full">🚀 Innovación</span>
-                <span class="bg-red-100 text-red-700 px-4 py-1 rounded-full">🤝 Trabajo en Equipo</span>
-                <span class="bg-red-100 text-red-700 px-4 py-1 rounded-full">💡 Creatividad</span>
-            </div> -->
-        </div>
-    </section>
-
-    <!-- Nuestro Equipo -->
-    <section id="equipo" class="section-container bg-gray-100 py-16 px-6 md:px-20 text-center">
-        <h2 class="text-2xl font-extrabold mb-2">Nuestro Equipo</h2>
-        <div class="w-20 h-1 bg-red-600 mx-auto mb-6"></div>
-        <p class="text-sm mb-10">Conoce a los integrantes de Spectrum Racing, cada uno con habilidades únicas que nos
-            permiten destacar en la competencia F1 in Schools.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
+                <!-- Contenido -->
+                <div class="max-w-xl">
+                    <h2 class="text-7xl font-extrabold text-white mb-4">¿Quiénes Somos?</h2>
+                    <p class="text-xl font-bold text-gray-200 mb-4" style="font-family: 'Oswald', sans-serif;">Spectrum
+                        Racing es un equipo de estudiantes
+                        apasionados del Colegio
+                        San Ángel de Coatzacoalcos que participa en la competencia internacional F1 in Schools.</p>
+                    <p class="text-xl font-bold text-gray-200" style="font-family: 'Oswald', sans-serif;">Nuestro
+                        objetivo es diseñar, fabricar y competir con un
+                        auto en miniatura
+                        propulsado por CO₂, aplicando principios de ingeniería, aerodinámica y gestión de proyectos.</p>
                 </div>
             </div>
-            <!-- Repetir para los demás miembros -->
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
-                </div>
-            </div>
+        </section>
 
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
-                </div>
-            </div>
 
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
-                </div>
-            </div>
-
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
-                </div>
-            </div>
-
-            <div class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="bg-red-600 h-32 flex items-center justify-center text-white text-4xl">👤</div>
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-sm">Lorem Ipsum</h3>
-                    <p class="text-red-600 text-xs font-semibold mb-2">Líder del Equipo</p>
-                    <p class="text-xs mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
-                        mauris.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nuestro Proyecto -->
-    <section id="proyecto" class="section-container bg-white py-16 px-6 md:px-20">
-        <h2 class="text-2xl font-extrabold text-center mb-2">Nuestro Proyecto</h2>
-        <div class="w-20 h-1 bg-red-600 mx-auto mb-6"></div>
-        <p class="text-center text-sm mb-10">Conoce más sobre nuestro auto de carreras y el proceso de diseño y
-            fabricación que seguimos para la competencia F1 in Schools.</p>
-        <div class="flex flex-col md:flex-row gap-10 items-center">
-            <div class="bg-red-100 w-full h-56 md:w-2/3 rounded-lg flex items-center justify-center">Imagen del Auto
-            </div>
+        <!-- Equipo -->
+        <section id="equipo"
+            class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
+            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position: center; background-size: 500px; font-family: 'Saved By Zero', sans-serif;">
             <div>
-                <h3 class="font-bold text-lg mb-4">Características del Diseño</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><strong>1.</strong> <span class="font-bold">Aerodinámica Avanzada:</span> Diseño optimizado en
-                        túnel de viento virtual.</li>
-                    <li><strong>2.</strong> <span class="font-bold">Materiales Ligeros:</span> Materiales compuestos de
-                        alta tecnología.</li>
-                    <li><strong>3.</strong> <span class="font-bold">Diseño Sostenible:</span> Diseño con materiales
-                        reciclables.</li>
-                </ul>
-                <button class="mt-4 bg-red-600 text-white px-4 py-2 rounded font-semibold text-sm">Ver Especificaciones
-                    Técnicas →</button>
+                <h2 class="text-7xl font-extrabold text-white mb-4">Nuestro Equipo</h2>
+                <p class="mt-4 text-gray-300 max-w-xl">¿Te interesa apoyarnos, colaborar o saber más? ¡Estamos listos
+                    para escucharte!</p>
             </div>
-        </div>
-        <div class="flex justify-center gap-6 mt-10 text-white text-sm font-bold">
-            <div class="bg-red-600 p-4 rounded w-24 text-center">120<br /><span class="text-xs">KM/H</span></div>
-            <div class="bg-black p-4 rounded w-24 text-center">0.3<br /><span class="text-xs">COEF. AERO</span></div>
-            <div class="bg-red-600 p-4 rounded w-24 text-center">50g<br /><span class="text-xs">PESO</span></div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Galería -->
-    <section id="galeria" class="section-container bg-gray-100 py-16 px-6 md:px-20 text-center">
-        <h2 class="text-2xl font-extrabold mb-2">Galería</h2>
-        <div class="w-20 h-1 bg-red-600 mx-auto mb-6"></div>
-        <p class="text-sm mb-10">Imágenes de nuestro equipo, el proceso de diseño y fabricación, y las competencias en
-            las que hemos participado.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center font-bold text-red-700">Diseño del
-                Auto</div>
-            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center font-bold text-red-700">Equipo
-                Trabajando</div>
-            <div class="bg-red-100 h-48 rounded-lg flex items-center justify-center font-bold text-red-700">Competición
+        <!-- Auto -->
+        <section id="auto"
+            class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden min-h-screen"
+            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/specAirView.png'); background-repeat: no-repeat; background-position: center; background-size: cover; font-family: 'Saved By Zero', sans-serif;">
+            <div class="max-w-xl">
+                <h2 class="text-7xl font-extrabold text-white mb-4">SPEC</h2>
+                <p class="mt-4 text-gray-300 max-w-xl">Fusionamos diseño e ingeniería para crear un monoplaza que
+                    maximiza el rendimiento en cada milésima de segundo.</p>
             </div>
-        </div>
-        <button class="mt-8 bg-red-600 text-white px-6 py-2 rounded font-semibold text-sm">Ver Más Fotos</button>
-    </section>
+        </section>
 
-    <footer class="bg-black text-white py-12 px-6 md:px-16">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
 
-            <!-- Logo + Descripción -->
+        <!-- Galería -->
+        <section id="galeria" class="tab-content flex items-center justify-center text-center px-6 bg-black" style="font-family: 'Saved By Zero', sans-serif;">
             <div>
-                <div class="flex items-center space-x-3 mb-4">
-                    <img src="/src/logopng.png" alt="Logo Spectrum Racing" class="w-10 h-10">
-                    <h2 class="text-xl font-bold">Spectrum Racing</h2>
-                </div>
-                <p class="text-sm text-gray-300">
-                    Equipo de estudiantes del Colegio San Ángel de Coatzacoalcos participando en la competición
-                    internacional F1 in Schools.
-                </p>
+                <h2 class="text-7xl font-extrabold text-white mb-4">Galería</h2>
+                <p class="mt-4 text-gray-300 max-w-xl">Reconocidos por nuestra creatividad, excelencia técnica y
+                    espíritu de colaboración en cada competencia.</p>
             </div>
+        </section>
+    </main>
 
-            <!-- Enlaces rápidos -->
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
-                <ul class="space-y-2 text-gray-300">
-                    <li><a href="#inicio" class="hover:text-white">Inicio</a></li>
-                    <li><a href="#equipo" class="hover:text-white">Equipo</a></li>
-                    <li><a href="#proyecto" class="hover:text-white">Proyecto</a></li>
-                    <li><a href="#galeria" class="hover:text-white">Galería</a></li>
-                </ul>
-            </div>
+    <!-- Navbar inferior -->
+    <nav>
+        <button onclick="showTab('inicio')" class="nav-tab">Inicio</button>
+        <button onclick="showTab('nosotros')" class="nav-tab">Nosotros</button>
+        <button onclick="showTab('equipo')" class="nav-tab">Equipo</button>
+        <button onclick="showTab('auto')" class="nav-tab">SPEC</button>
+        <button onclick="showTab('galeria')" class="nav-tab">Galería</button>
+    </nav>
 
-            <!-- Contacto -->
-            <div>
-                <h3 class="text-lg font-semibold mb-4">Contáctanos</h3>
-                <ul class="text-gray-300 space-y-3">
-                    <li class="flex items-start space-x-2">
-                        <span class="text-red-500 mt-1">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </span>
-                        <span>Colegio San Ángel de Coatzacoalcos<br>Coatzacoalcos, Veracruz, México</span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <span class="text-red-500">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                        <a class="hover:text-white">spectrumracingf1@gmail.com</a>
-                    </li>
-                </ul>
-
-                <!-- Redes sociales -->
-                <div class="mt-6">
-                    <h4 class="text-md font-semibold mb-2">Síguenos</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" class="text-gray-300 hover:text-white text-xl"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
+    <!-- Script de navegación -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth"
-                    });
-                }
-            });
-        });
-    </script>
+        const tabOrder = ['inicio', 'nosotros', 'equipo', 'auto', 'galeria'];
+        let currentTab = 'inicio';
+        let isTransitioning = false;
 
+        function showTab(nextTabId) {
+            if (isTransitioning || nextTabId === currentTab) return;
+
+            const currentIndex = tabOrder.indexOf(currentTab);
+            const nextIndex = tabOrder.indexOf(nextTabId);
+
+            const direction = nextIndex < currentIndex ? 'left' : 'right';
+            const exitDirection = direction === 'left' ? 'right' : 'left';
+
+            const currentTabEl = document.getElementById(currentTab);
+            const nextTabEl = document.getElementById(nextTabId);
+
+            isTransitioning = true;
+
+            // Preparar siguiente pestaña
+            nextTabEl.classList.remove('tab-left', 'tab-right', 'tab-active');
+            nextTabEl.style.transition = 'none';
+            nextTabEl.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+            nextTabEl.style.opacity = '1';
+            nextTabEl.style.zIndex = '10';
+
+            void nextTabEl.offsetWidth; // forzar reflow
+
+            nextTabEl.style.transition = 'all 0.85s ease-in-out';
+            nextTabEl.style.transform = 'translateX(0)';
+            nextTabEl.classList.add('tab-active');
+
+            currentTabEl.style.transition = 'all 0.85s ease-in-out';
+            currentTabEl.style.transform = exitDirection === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+            currentTabEl.style.opacity = '0';
+            currentTabEl.style.zIndex = '5';
+
+            setTimeout(() => {
+                currentTabEl.classList.remove('tab-active');
+                currentTabEl.style.transform = '';
+                currentTabEl.style.opacity = '';
+                currentTabEl.style.zIndex = '';
+                nextTabEl.style.zIndex = '';
+                currentTab = nextTabId;
+                isTransitioning = false;
+            }, 900); // ligeramente más que el tiempo de transición
+        }
+    </script>
 </body>
 
 </html>

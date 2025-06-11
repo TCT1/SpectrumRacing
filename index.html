@@ -11,7 +11,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/src/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/saved-by-zero" rel="stylesheet">
 
     <style>
@@ -71,6 +70,12 @@
             box-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
         }
 
+        @media (max-width: 768px) {
+            nav {
+                width: 90vw;
+            }
+        }
+
         .nav-tab {
             flex: 1;
             padding: 0.75rem 0;
@@ -97,6 +102,64 @@
         .nav-tab:active {
             transform: scale(0.95);
         }
+
+        .romboide-gallery {
+            display: flex;
+            justify-content: center;
+            gap: clamp(10px, 3vw, 30px);
+            flex-wrap: wrap;
+            padding: 2rem;
+        }
+
+        .romboide {
+            position: relative;
+            width: clamp(180px, 32vw, 400px);
+            aspect-ratio: 5 / 4;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            overflow: visible;
+            transition: transform 0.6s ease;
+        }
+
+        /* Esta clase animará el crecimiento completo del romboide */
+        .romboide.animate-zoom {
+            transform: scale(1.07);
+        }
+
+        .romboide-inner {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            clip-path: inherit;
+            position: relative;
+            z-index: 2;
+        }
+
+        .romboide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: red;
+            clip-path: inherit;
+            transform: translate(-10px, 10px);
+            z-index: 1;
+            opacity: 0.7;
+            border-left: 4px solid red;
+            border-bottom: 4px solid red;
+        }
+
+
+        /* Responsive móvil */
+        @media (max-width: 768px) {
+            .romboide-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .romboide {
+                width: clamp(160px, 80vw, 260px);
+            }
+        }
     </style>
 </head>
 
@@ -116,18 +179,18 @@
                     style="font-family: 'Oswald', sans-serif;">Equipo de F1 in Schools | Colegio San
                     Ángel de
                     Coatzacoalcos.</p>
-                <button onclick="showTab('equipo')"
-                    style="font-family: 'Oswald', sans-serif;" class="mt-6 inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-all">Explorar</button>
+                <button onclick="showTab('equipo')" style="font-family: 'Oswald', sans-serif;"
+                    class="mt-6 inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-all">Explorar</button>
             </div>
         </section>
 
         <!-- Nosotros -->
         <section id="nosotros"
             class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
-            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position:center; background-size: 500px; font-family: 'Saved By Zero', sans-serif;">
+            style="background-image: url('/src/TeamPics/TeamPic1.jpg'); background-repeat: no-repeat; background-position:center; background-size:cover; font-family: 'Saved By Zero', sans-serif;">
 
             <!-- Overlay oscuro para mejorar contraste -->
-            <div class="absolute inset-0 bg-black bg-opacity-80 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-black bg-opacity-70 pointer-events-none"></div>
 
             <!-- Contenedor con efecto de vidrio -->
             <div
@@ -152,43 +215,112 @@
         <!-- Equipo -->
         <section id="equipo"
             class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
-            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position: center; background-size: 500px; font-family: 'Saved By Zero', sans-serif;">
+            style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent 50%), url('/src/logopngRed.png'); background-repeat: no-repeat; background-position: center; background-size: 500px; font-family: 'Saved By Zero', sans-serif;">
             <div>
                 <h2 class="text-7xl font-extrabold text-white mb-4">Nuestro Equipo</h2>
-                <p class="mt-4 text-gray-300 max-w-xl">¿Te interesa apoyarnos, colaborar o saber más? ¡Estamos listos
-                    para escucharte!</p>
+                <div class="mt-10 px-4 w-full">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto justify-items-center"
+                        style="font-family: 'Oswald', sans-serif;">
+
+                        <!-- Tarjeta -->
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Santiago Estaraneta Sosa</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Ingeniero de Diseño</p>
+                        </div>
+
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Dana Paloma</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Líder de Marketing</p>
+                        </div>
+
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Leonardo Juventino Villaseñor</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Técnico de Aerodinámica</p>
+                        </div>
+
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Alan Eduardo</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                        </div>
+
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Oswaldo del Angel</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                        </div>
+
+                        <div
+                            class="bg-white text-black rounded-2xl p-6 flex flex-col items-center shadow-lg w-full max-w-xs">
+                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
+                                class="w-20 h-20 mb-3 rounded-full object-cover" />
+                            <h3 class="text-lg font-bold text-center leading-tight">Briana Paula</h3>
+                            <p class="text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- Auto -->
         <section id="auto"
             class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden min-h-screen"
-            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/specAirView.png'); background-repeat: no-repeat; background-position: center; background-size: cover; font-family: 'Saved By Zero', sans-serif;">
+            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/SpecRenders/specUpViewBN.png'); background-repeat: no-repeat; background-position: center; background-size: cover; font-family: 'Saved By Zero', sans-serif;">
             <div class="max-w-xl">
                 <h2 class="text-7xl font-extrabold text-white mb-4">SPEC</h2>
-                <p class="mt-4 text-gray-300 max-w-xl">Fusionamos diseño e ingeniería para crear un monoplaza que
-                    maximiza el rendimiento en cada milésima de segundo.</p>
+                <p class="text-xl font-bold text-gray-200" style="font-family: 'Oswald', sans-serif;">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eius molestiae temporibus sapiente
+                    magni quas. Velit quo saepe debitis fugiat deleniti at aliquam odio amet nulla voluptate provident,
+                    eos totam.
+                </p>
             </div>
         </section>
 
 
         <!-- Galería -->
-        <section id="galeria" class="tab-content flex items-center justify-center text-center px-6 bg-black" style="font-family: 'Saved By Zero', sans-serif;">
+        <section id="galeria" class="tab-content flex items-center justify-center text-center px-6 bg-black"
+            style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position: center; background-size: 500px;">
             <div>
                 <h2 class="text-7xl font-extrabold text-white mb-4">Galería</h2>
-                <p class="mt-4 text-gray-300 max-w-xl">Reconocidos por nuestra creatividad, excelencia técnica y
-                    espíritu de colaboración en cada competencia.</p>
+                <div class="romboide-gallery">
+                    <div class="romboide" data-index="0">
+                        <div class="romboide-inner"></div>
+                    </div>
+                    <div class="romboide" data-index="1">
+                        <div class="romboide-inner"></div>
+                    </div>
+                    <div class="romboide" data-index="2">
+                        <div class="romboide-inner"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
 
     <!-- Navbar inferior -->
     <nav>
-        <button onclick="showTab('inicio')" class="nav-tab">Inicio</button>
-        <button onclick="showTab('nosotros')" class="nav-tab">Nosotros</button>
-        <button onclick="showTab('equipo')" class="nav-tab">Equipo</button>
-        <button onclick="showTab('auto')" class="nav-tab">SPEC</button>
-        <button onclick="showTab('galeria')" class="nav-tab">Galería</button>
+        <button onclick="showTab('inicio')" class="nav-tab" style="font-family: 'Oswald', sans-serif;">Inicio</button>
+        <button onclick="showTab('nosotros')" class="nav-tab"
+            style="font-family: 'Oswald', sans-serif;">Nosotros</button>
+        <button onclick="showTab('equipo')" class="nav-tab" style="font-family: 'Oswald', sans-serif;">Equipo</button>
+        <button onclick="showTab('auto')" class="nav-tab" style="font-family: 'Oswald', sans-serif;">SPEC</button>
+        <button onclick="showTab('galeria')" class="nav-tab" style="font-family: 'Oswald', sans-serif;">Galería</button>
     </nav>
 
     <!-- Script de navegación -->
@@ -240,6 +372,38 @@
             }, 900); // ligeramente más que el tiempo de transición
         }
     </script>
+    <script>
+        const images = [
+            'src/TeamPics/TeamPic1.jpg',
+            'src/TeamPics/TeamPic2.jpg',
+            'src/TeamPics/TeamPic3.jpg',
+            'src/TeamPics/TeamPic4.jpg',
+            'src/TeamPics/TeamPic5.jpg',
+            'src/TeamPics/TeamPic6.jpg',
+            'src/TeamPics/TeamPic7.jpg'
+        ];
+
+        const rombos = document.querySelectorAll('.romboide');
+
+        rombos.forEach((rombo, i) => {
+            const inner = rombo.querySelector('.romboide-inner'); // ✅ buscar el fondo correcto
+            let currentIndex = i;
+
+            inner.style.backgroundImage = `url(${images[currentIndex]})`;
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 3) % images.length;
+                inner.style.backgroundImage = `url(${images[currentIndex]})`;
+
+                rombo.classList.add('animate-zoom');
+                setTimeout(() => {
+                    rombo.classList.remove('animate-zoom');
+                }, 500); // mismo tiempo que en CSS
+            }, 3000 + i * 1000); // desfase progresivo
+        });
+
+    </script>
+
 </body>
 
 </html>

@@ -16,12 +16,22 @@
     <style>
         html,
         body {
+            height: 100%;
+            overflow-y: hidden;
             margin: 0;
             padding: 0;
             background-color: #000;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
+
+        #tabs {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
 
         .tab-content {
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -30,11 +40,11 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            overflow: hidden;
             opacity: 0;
             pointer-events: none;
             display: flex;
             transform: translateX(100%);
-            /* por defecto, fuera de vista a la derecha */
             z-index: 0;
         }
 
@@ -104,120 +114,10 @@
         }
 
 
-
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery {
-            width: 85%;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 50px;
-            margin-bottom: 120px;
-
-            display: grid;
-            grid-template-columns: repeat(auto-fit, 133px);
-            grid-auto-rows: 200px;
-            justify-content: center;
-            gap: 20px 10px;
-        }
-
-        .gallery__item {
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            grid-column: span 2;
-            height: 283px;
-        }
-
-        .gallery__item:first-of-type {
-            grid-column: 2/ span 2;
-        }
-
-        .presentacion__galeria {
-            display: flex;
-            flex-direction: column;
-            font-size: 25px;
-            text-align: center;
-            flex-wrap: wrap;
-            text-align: center;
-            padding-left: 25%;
-            padding-right: 25%;
-        }
-
-        /* media queries */
-        @media screen and (min-width: 863px) and (max-width: 1038px) {
-            .gallery__item:nth-of-type(4n + 1) {
-                grid-column: 2 / span 2;
-            }
-        }
-
-        @media screen and (min-width: 1039px) and (max-width: 1251px) {
-            .gallery__item:nth-of-type(5n + 1) {
-                grid-column: 2 / span 2;
-            }
-
-            .gallery {
-                width: 85%;
-                max-width: 1200px;
-                grid-template-columns: repeat(auto-fit, 120px);
-                grid-auto-rows: 150px;
-                gap: 10px 10px;
-            }
-
-            .gallery__item {
-                height: 210px;
-                width: 210px;
-            }
-        }
-
-        @media screen and (min-width: 1252px) and (max-width: 1391px) {
-            .gallery__item:nth-of-type(7n + 1) {
-                grid-column: 2 / span 2;
-            }
-
-            .gallery {
-                width: 85%;
-                max-width: 1200px;
-                grid-template-columns: repeat(auto-fit, 120px);
-                grid-auto-rows: 180px;
-            }
-
-            .gallery__item {
-                height: 240px;
-                width: 240px;
-            }
-        }
-
-        /* Oculta el carrusel en pantallas grandes */
-        @media (min-width: 1038px) {
-            #mobileCarousel {
-                display: none !important;
-            }
-
-            .gallery {
-                display: grid !important;
-            }
-        }
-
-        /* Oculta la galería en pantallas pequeñas, muestra el carrusel */
-        @media (max-width: 1038px) {
-            .gallery {
-                display: none !important;
-            }
-
-            #mobileCarousel {
-                display: block !important;
-            }
-        }
-
         .carousel {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             overflow: hidden;
             border-radius: 1rem;
@@ -309,56 +209,45 @@
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Santiago
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Santiago
                                 Estaraneta Sosa</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Ingeniero de Diseño</p>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Líder de escudería</p>
                         </div>
-
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Dana Paloma
-                            </h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Líder de Marketing</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Dana Paloma</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Marketing</p>
                         </div>
-
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Leonardo
-                                Juventino Villaseñor</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Técnico de Aerodinámica</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Leonardo Juventino Villaseñor</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Informática</p>
                         </div>
-
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Alan
-                                Eduardo</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Alan Eduardo</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Ingeniería</p>
                         </div>
-
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Oswaldo del
-                                Angel</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Briana Paula</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Diseño</p>
                         </div>
-
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words">Briana
-                                Paula</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold">Manager de Proyecto</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Oswaldo del Angel</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Diseño</p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -382,58 +271,46 @@
 
         <!-- Galería -->
         <section id="galeria"
-            class="tab-content relative flex-col items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
-            style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 50%), url('/src/logopng.png'); background-repeat: no-repeat; background-position: center; background-size: 500px;">
-            <h2 class="text-7xl font-extrabold text-white mb-16">Galería</h2>
-            <div class="gallery">
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic1.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic2.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic3.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic4.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic5.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic6.jpg" alt="gis-mariposa">
-                </div>
-                <div class="gallery__item">
-                    <img class="gallery__img" src="src/TeamPics/TeamPic7.jpg" alt="gis-mariposa">
-                </div>
-            </div>
+            class="tab-content relative flex flex-col items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
+            style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 100%), url('/src/logoFondo.png'); background-repeat: no-repeat; background-position: bottom; background-size: 2000px;">
 
-            <!-- Carrusel solo visible en móviles -->
-            <!-- Carrusel solo visible en móviles -->
-            <div class="carousel hidden" id="mobileCarousel">
-                <div class="carousel__track-container relative">
+            <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-16">Galería</h2>
+            <div class="carousel block" id="mobileCarousel">
+                <div class="carousel__track-container relative overflow-hidden">
                     <div class="carousel__track flex transition-transform duration-700 ease-in-out" id="carouselTrack">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic1.jpg" alt="TeamPic1">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic2.jpg" alt="TeamPic2">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic3.jpg" alt="TeamPic3">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic4.jpg" alt="TeamPic4">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic5.jpg" alt="TeamPic5">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic6.jpg" alt="TeamPic6">
-                        <img class="carousel__img" src="src/TeamPics/TeamPic7.jpg" alt="TeamPic7">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic1.jpg" alt="TeamPic1">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic2.jpg" alt="TeamPic2">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic3.jpg" alt="TeamPic3">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic4.jpg" alt="TeamPic4">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic5.jpg" alt="TeamPic5">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic6.jpg" alt="TeamPic6">
+                        <img class="carousel__img w-full max-w-full h-auto rounded-lg object-cover"
+                            src="src/TeamPics/TeamPic7.jpg" alt="TeamPic7">
                     </div>
 
                     <!-- Botones -->
                     <button id="prevBtn"
-                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white px-4 py-2 rounded-l">⟨</button>
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-400 bg-opacity-50 text-white text-3xl p-4 rounded-l shadow-lg w-12 h-12 flex items-center justify-center">
+                        ⟨
+                    </button>
                     <button id="nextBtn"
-                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white px-4 py-2 rounded-r">⟩</button>
+                        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-400 bg-opacity-50 text-white text-3xl p-4 rounded-r shadow-lg w-12 h-12 flex items-center justify-center">
+                        ⟩
+                    </button>
+
                 </div>
 
                 <!-- Indicadores -->
                 <div class="carousel__indicators flex justify-center gap-2 mt-4" id="carouselIndicators"></div>
             </div>
         </section>
+
     </main>
 
     <!-- Navbar inferior -->

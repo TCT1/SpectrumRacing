@@ -134,7 +134,7 @@
         .carousel__indicators span {
             width: 10px;
             height: 10px;
-            background-color: #ccc;
+            background-color: #ffffff;
             border-radius: 50%;
             display: inline-block;
             transition: background-color 0.3s;
@@ -142,6 +142,21 @@
 
         .carousel__indicators .active {
             background-color: #f00;
+        }
+
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
         }
     </style>
 </head>
@@ -151,13 +166,52 @@
     <!-- Contenedor horizontal de secciones -->
     <main id="tabs" class="relative w-screen h-screen overflow-hidden">
 
+        <!-- Carrusel fijo superior -->
+        <div class="fixed top-0 w-full bg-gray-600 outline outline-2 outline-red-600 z-50 overflow-hidden">
+            <div class="w-full whitespace-nowrap">
+                <div class="inline-flex animate-marquee space-x-12 py-2 px-4">
+                    <!-- Logos de patrocinadores -->
+                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/F1 Bearings.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/ITESCO.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/ODG.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/PERSISTE A.C.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/SIMSCALE.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/TECNM1.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/TPO.png" alt="Patrocinador 1" class="h-12 object-contain" />
+
+                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/F1 Bearings.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/ITESCO.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/ODG.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/PERSISTE A.C.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/SIMSCALE.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/TECNM1.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                    <img src="src/logoPatrocinios/TPO.png" alt="Patrocinador 1" class="h-12 object-contain" />
+                </div>
+            </div>
+        </div>
+
         <!-- Hero / Inicio -->
         <section id="inicio"
             class="tab-content tab-active flex items-center justify-center text-center px-6 py-20 sm:py-28 bg-cover bg-center min-h-screen"
             style="background-image: url('src/specFrontView.png'); font-family: 'Saved By Zero', sans-serif;">
             <div class="bg-black bg-opacity-60 w-full h-full absolute top-0 left-0 z-0"></div>
             <div class="z-10">
-                <h1 class="text-4xl sm:text-6xl md:text-8xl font-extrabold uppercase break-words">Spectrum Racing</h1>
+                <h1
+                    class="text-5xl sm:text-6xl md:text-8xl font-extrabold uppercase break-words leading-tight max-w-[95vw] sm:max-w-[30ch] md:max-w-none mx-auto">
+                    Spectrum Racing
+                </h1>
                 <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-bold"
                     style="font-family: 'Oswald', sans-serif;">Equipo de F1 in Schools | Colegio San
                     Ángel de
@@ -175,7 +229,7 @@
 
             <!-- Contenedor con efecto de vidrio -->
             <div
-                class="relative z-10 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 w-full max-w-3xl mx-auto p-6 sm:p-8 md:p-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg ring-1 ring-white/30 ring-offset-2 ring-offset-red-500/20">
+                class="relative z-10 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 w-full max-w-3xl mx-auto p-6 sm:p-8 md:p-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg ring-1 ring-white/30 ring-offset-2 ring-offset-red-500/20 bg-gray-600 bg-opacity-30">
 
                 <!-- Contenido -->
                 <div class="max-w-xl">
@@ -202,79 +256,79 @@
             <div>
                 <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8">Nuestro Equipo</h2>
                 <div class="mt-10 px-4 w-full max-w-6xl mx-auto">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 px-4">
+                    <div class="grid grid-cols-2 gap-6 px-4">
 
                         <!-- Tarjeta -->
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Santiago
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
+                                style="font-family: 'Oswald', sans-serif;">Santiago
                                 Estaraneta Sosa</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Líder de escudería</p>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
+                                style="font-family: 'Oswald', sans-serif;">Líder de escudería</p>
                         </div>
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Dana Paloma</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Marketing</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
+                                style="font-family: 'Oswald', sans-serif;">Dana Paloma</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
+                                style="font-family: 'Oswald', sans-serif;">Marketing</p>
                         </div>
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Leonardo Juventino Villaseñor</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Informática</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
+                                style="font-family: 'Oswald', sans-serif;">Leonardo Juventino Villaseñor</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
+                                style="font-family: 'Oswald', sans-serif;">Informática</p>
                         </div>
                         <div
                             class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Alan Eduardo</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Ingeniería</p>
-                        </div>
-                        <div
-                            class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
-                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
-                                class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Briana Paula</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Diseño</p>
-                        </div>
-                        <div
-                            class="bg-white text-black rounded-2xl p-4 sm:p-6 flex flex-col items-center shadow-lg w-full max-w-xs mx-auto">
-                            <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
-                                class="w-20 h-20 mb-3 rounded-full object-cover" />
-                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words" style="font-family: 'Oswald', sans-serif;">Oswaldo del Angel</h3>
-                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold" style="font-family: 'Oswald', sans-serif;">Diseño</p>
+                            <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
+                                style="font-family: 'Oswald', sans-serif;">Alan Eduardo</h3>
+                            <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
+                                style="font-family: 'Oswald', sans-serif;">Ingeniería</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
         <!-- Auto -->
         <section id="auto"
             class="tab-content relative flex items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden min-h-screen"
-            style="background-image: radial-gradient(circle at center, rgba(220,38,38,0.3), transparent 50%), url('/src/SpecRenders/specUpViewBN.png'); background-repeat: no-repeat; background-position: center; background-size: cover; font-family: 'Saved By Zero', sans-serif;">
-            <div class="max-w-xl">
-                <h2 class="text-7xl font-extrabold text-white mb-4">SPEC</h2>
-                <p class="text-xl font-bold text-gray-200" style="font-family: 'Oswald', sans-serif;">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eius molestiae temporibus sapiente
-                    magni quas. Velit quo saepe debitis fugiat deleniti at aliquam odio amet nulla voluptate provident,
-                    eos totam.
-                </p>
+            style="font-family: 'Saved By Zero', sans-serif;">
+            <div class="absolute inset-0 z-0 bg-center bg-no-repeat bg-contain transform scale-[1.6] rotate-90 md:rotate-0 md:scale-100 transition-all duration-500"
+                style="background-image: url('/src/SpecRenders/specUpViewBN.png');">
+            </div>
+            <div
+                class="relative z-10 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12 w-full max-w-2xl mx-auto p-6 sm:p-8 md:p-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg ring-1 ring-white/30 ring-offset-2 ring-offset-red-500/20 bg-gray-600 bg-opacity-30">
+                <!-- Contenido -->
+                <div class="relative z-10 max-w-xl">
+                    <h2 class="text-7xl font-extrabold text-white mb-4">SPEC</h2>
+                    <p class="text-xl font-bold text-gray-200" style="font-family: 'Oswald', sans-serif;">
+                        Diseñado con precisión, construido para la victoria.
+                        Nuestro monoplaza, SPEC, representa el equilibrio perfecto entre aerodinámica, ligereza y
+                        potencia.
+                        Cada línea y cada componente han sido optimizados para alcanzar la máxima eficiencia en pista.
+                    </p>
+                </div>
             </div>
         </section>
-
 
         <!-- Galería -->
         <section id="galeria"
             class="tab-content relative flex flex-col items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
-            style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 100%), url('/src/logoFondo.png'); background-repeat: no-repeat; background-position: bottom; background-size: 2000px;">
+            style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 100%), url('/src/logoFondo.png'); background-repeat: no-repeat; background-position: top; background-size: 2000px;">
 
-            <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-16">Galería</h2>
+            <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6">Galería</h2>
             <div class="carousel block" id="mobileCarousel">
                 <div class="carousel__track-container relative overflow-hidden">
                     <div class="carousel__track flex transition-transform duration-700 ease-in-out" id="carouselTrack">

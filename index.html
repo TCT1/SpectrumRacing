@@ -145,6 +145,10 @@
         }
 
 
+
+
+
+
         @keyframes marquee {
             0% {
                 transform: translateX(0%);
@@ -156,7 +160,13 @@
         }
 
         .animate-marquee {
-            animation: marquee 30s linear infinite;
+            animation: marquee 40s linear infinite;
+        }
+
+        .logo {
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(1.1);
         }
     </style>
 </head>
@@ -167,40 +177,44 @@
     <main id="tabs" class="relative w-screen h-screen overflow-hidden">
 
         <!-- Carrusel fijo superior -->
-        <div class="fixed top-0 w-full bg-gray-600 outline outline-2 outline-red-600 z-50 overflow-hidden">
-            <div class="w-full whitespace-nowrap">
-                <div class="inline-flex animate-marquee space-x-12 py-2 px-4">
-                    <!-- Logos de patrocinadores -->
-                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/F1 Bearings.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/ITESCO.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/ODG.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/PERSISTE A.C.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/SIMSCALE.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/TECNM1.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/TPO.png" alt="Patrocinador 1" class="h-12 object-contain" />
-
-                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/F1 Bearings.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/ITESCO.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/ODG.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/PERSISTE A.C.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/SIMSCALE.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/TECNM1.png" alt="Patrocinador 1" class="h-12 object-contain" />
-                    <img src="src/logoPatrocinios/TPO.png" alt="Patrocinador 1" class="h-12 object-contain" />
+        <div class="fixed top-0 w-full bg-gray-500 z-50 overflow-hidden h-20">
+            <div class="flex items-center h-full marquee w-max flex animate-marquee">
+                <!-- Logos duplicados manualmente para efecto cíclico continuo -->
+                <div class="flex gap-8 px-4">
+                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" class="logo" />
+                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" class="logo" />
+                    <img src="src/logoPatrocinios/F1 Bearings.png" class="logo" />
+                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" class="logo" />
+                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" class="logo" />
+                    <img src="src/logoPatrocinios/ITESCO.png" class="logo" />
+                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" class="logo" />
+                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" class="logo" />
+                    <img src="src/logoPatrocinios/ODG.png" class="logo" />
+                    <img src="src/logoPatrocinios/PERSISTE A.C.png" class="logo" />
+                    <img src="src/logoPatrocinios/SIMSCALE.png" class="logo" />
+                    <img src="src/logoPatrocinios/TECNM1.png" class="logo" />
+                    <img src="src/logoPatrocinios/TPO.png" class="logo" />
+                </div>
+                <div class="flex gap-8 px-4">
+                    <!-- Segunda secuencia idéntica para loop continuo -->
+                    <img src="src/logoPatrocinios/ADITIVOS & COLORANTES PLÁSTICOS.png" class="logo" />
+                    <img src="src/logoPatrocinios/CSA COATZACOALCOS.png" class="logo" />
+                    <img src="src/logoPatrocinios/F1 Bearings.png" class="logo" />
+                    <img src="src/logoPatrocinios/F1 IN SCHOOLS.png" class="logo" />
+                    <img src="src/logoPatrocinios/GULF PADEL CLUB.png" class="logo" />
+                    <img src="src/logoPatrocinios/ITESCO.png" class="logo" />
+                    <img src="src/logoPatrocinios/LOGO OPTIMEDIC 1.png" class="logo" />
+                    <img src="src/logoPatrocinios/MAKER LABS ROBOTICS.png" class="logo" />
+                    <img src="src/logoPatrocinios/ODG.png" class="logo" />
+                    <img src="src/logoPatrocinios/PERSISTE A.C.png" class="logo" />
+                    <img src="src/logoPatrocinios/SIMSCALE.png" class="logo" />
+                    <img src="src/logoPatrocinios/TECNM1.png" class="logo" />
+                    <img src="src/logoPatrocinios/TPO.png" class="logo" />
                 </div>
             </div>
         </div>
+
+
 
         <!-- Hero / Inicio -->
         <section id="inicio"
@@ -256,7 +270,7 @@
             <div>
                 <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8">Nuestro Equipo</h2>
                 <div class="mt-10 px-4 w-full max-w-6xl mx-auto">
-                    <div class="grid grid-cols-2 gap-6 px-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-6">
 
                         <!-- Tarjeta -->
                         <div
@@ -274,7 +288,7 @@
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
                             <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
-                                style="font-family: 'Oswald', sans-serif;">Dana Paloma</h3>
+                                style="font-family: 'Oswald', sans-serif;">Dana Paloma González Salazar</h3>
                             <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
                                 style="font-family: 'Oswald', sans-serif;">Marketing</p>
                         </div>
@@ -292,7 +306,7 @@
                             <img src="https://twemoji.maxcdn.com/v/latest/72x72/1f464.png" alt="Foto de Integrante"
                                 class="w-20 h-20 mb-3 rounded-full object-cover" />
                             <h3 class="text-base sm:text-lg font-bold text-center leading-tight break-words"
-                                style="font-family: 'Oswald', sans-serif;">Alan Eduardo</h3>
+                                style="font-family: 'Oswald', sans-serif;">Alan Eduardo Cortés Torres</h3>
                             <p class="text-xs sm:text-sm text-red-700 text-center font-bold"
                                 style="font-family: 'Oswald', sans-serif;">Ingeniería</p>
                         </div>
@@ -328,7 +342,7 @@
             class="tab-content relative flex flex-col items-center justify-center text-center px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
             style="font-family: 'Saved By Zero', sans-serif; background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 100%), url('/src/logoFondo.png'); background-repeat: no-repeat; background-position: top; background-size: 2000px;">
 
-            <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6">Galería</h2>
+            <h2 class="text-5xl md:text-7xl font-extrabold text-white mt-10 mb-2">Galería</h2>
             <div class="carousel block" id="mobileCarousel">
                 <div class="carousel__track-container relative overflow-hidden">
                     <div class="carousel__track flex transition-transform duration-700 ease-in-out" id="carouselTrack">

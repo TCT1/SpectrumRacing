@@ -223,7 +223,7 @@
             <div class="bg-black bg-opacity-60 w-full h-full absolute top-0 left-0 z-0"></div>
             <div class="z-10">
                 <h1
-                    class="text-5xl sm:text-6xl md:text-8xl font-extrabold uppercase break-words leading-tight max-w-[95vw] sm:max-w-[30ch] md:max-w-none mx-auto">
+                    class="text-5xl sm:text-5xl md:text-8xl font-extrabold uppercase break-words leading-tight max-w-[95vw] sm:max-w-[30ch] md:max-w-none mx-auto">
                     Spectrum Racing
                 </h1>
                 <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto font-bold"
@@ -268,8 +268,8 @@
             class="tab-content relative flex items-center justify-center text-center px-4 sm:px-6 md:px-12 py-12 bg-black text-white overflow-hidden"
             style="background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent 50%), url('/src/logopngRed.png'); background-repeat: no-repeat; background-position: center; background-size: 400px; font-family: 'Saved By Zero', sans-serif;">
             <div>
-                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8">Nuestro Equipo</h2>
-                <div class="mt-10 px-4 w-full max-w-6xl mx-auto">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2">Nuestro Equipo</h2>
+                <div class="mt-4 px-4 w-full max-w-6xl mx-auto">
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-6">
 
                         <!-- Tarjeta -->
@@ -439,36 +439,6 @@
                 isTransitioning = false;
             }, 900); // ligeramente más que el tiempo de transición
         }
-    </script>
-    <script>
-        const images = [
-            'src/TeamPics/TeamPic1.jpg',
-            'src/TeamPics/TeamPic2.jpg',
-            'src/TeamPics/TeamPic3.jpg',
-            'src/TeamPics/TeamPic4.jpg',
-            'src/TeamPics/TeamPic5.jpg',
-            'src/TeamPics/TeamPic6.jpg',
-            'src/TeamPics/TeamPic7.jpg'
-        ];
-
-        const rombos = document.querySelectorAll('.romboide');
-
-        rombos.forEach((rombo, i) => {
-            const inner = rombo.querySelector('.romboide-inner'); // ✅ buscar el fondo correcto
-            let currentIndex = i;
-
-            inner.style.backgroundImage = `url(${images[currentIndex]})`;
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 3) % images.length;
-                inner.style.backgroundImage = `url(${images[currentIndex]})`;
-
-                rombo.classList.add('animate-zoom');
-                setTimeout(() => {
-                    rombo.classList.remove('animate-zoom');
-                }, 500); // mismo tiempo que en CSS
-            }, 3000 + i * 1000); // desfase progresivo
-        });
     </script>
     <script>
         const track = document.getElementById('carouselTrack');
